@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}HOME{% endblock %}
+
+{% block content %}
+<div style="padding-left: 20px; margin-top: 20px">
+<h1>Tasks:</h1>
+    <div style="padding-left: 20px">
+{% for task in tasks %}
+<p>{{ task }} (created at {{ task.created_at }})</p></p>
+{% if task.user == user %}
+<div>
+    <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'update_task' task.id %}">Edit</a>
+    <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'delete_task' task.id %}">Delete</a>
+</div>
+{% endif %}
+<hr>
+{%endfor%}
+        </div>
+</div>
+{% endblock %}
